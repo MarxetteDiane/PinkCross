@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Admin Log-In</title>
-    <link rel="stylesheet"href="loginstyle.css">
+    <link rel="stylesheet"href="Design.css">
 </head>
 <body>
 
@@ -44,16 +44,16 @@ function test_input($data) {
 ?>
 
 <div class="login-box">
-    <img src="pinkCross.svg">
+    <img src="pinkCrossLogo.png">
     <h1>Pink Cross</h1>
     <form action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <div class="textbox">
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <i class="fa fa-user" aria-hidden="true" style="color: darkred"></i>
             <input type="text" placeholder="Username" name="Username">
             <span class="error"><?php echo $logUserErr;?></span>
         </div>
         <div class="textbox">
-            <i class="fa fa-lock" aria-hidden="true" ></i>
+            <i class="fa fa-lock" aria-hidden="true" style="color: darkred"></i>
             <input type="password" placeholder="Password" name="Password">
             <span class="error"><?php echo $logPassErr;?></span>
         </div>

@@ -30,17 +30,26 @@ function test_input($data){
 <html>
 <head>
     <title>Pink Cross</title>
-    <link rel="stylesheet"href="loginstyle.css">
+    <link rel="stylesheet"href="Design.css">
 </head>
 <body>
-<div class="header">
-    <form action= "RequestRegistration.php">
-        <button class="btn2" style="color: black"><i class="fa fa-user-plus"></i></button>
-    </form>
-    <form action= "Mainpage.php">
-        <button class="left" style="color: black"><i class="fa fa-arrow-left"></i></button>
-    </form>
+
+<img src="pinkCrossLogo.png" style="position: absolute">
+<form action= "LogInPage.php" method="post">
+    <button class="admin"><i class="fa fa-user-md"></i></button>
+</form>
+<form action="HomePage.php">
+    <button class="admin" style="float: left; margin-left: 10px"><i class="fa fa-home" aria-hidden="true"></i></button>
+</form>
+<div class="dropdown">
+    <button class="dropbtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    <div class="dropdown-content">
+        <a href="AvailablePage.php">Available Blood</a>
+        <a href="DonorsPage.php">Blood Donors</a>
+        <a href="RequestsPage.php">Blood Requests</a>
+    </div>
 </div>
+
 <div class="SelectedPage">
     <h3 style="margin-left: 15px">List of Blood Requests</h3>
     <i class="fa fa-search" style="margin-left: 80px"></i> <input type="search">
@@ -77,8 +86,11 @@ function test_input($data){
 </div>
 
 <?php
-if (isset($_POST['sortButton'])) {
+
+if ((isset($_POST['sortButton']) and ($sort != "all"))) {
     $result_out = mysqli_query($sqlConnect,"select * from basic where bloodtype = '$sort'");
+} else if ($sort == "all") {
+    $result_out = mysqli_query($sqlConnect,"select * from basic");
 }
 
 while($VD=mysqli_fetch_array($result_out)) {

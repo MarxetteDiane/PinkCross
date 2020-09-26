@@ -15,7 +15,7 @@ if(!$selectDB) {
 
 <html>
 <title>Requests Update</title>
-<link rel="stylesheet"href="loginstyle.css">
+<link rel="stylesheet"href="Design.css">
 <body>
 <div class="header">
     <form action= "AdminPage.php">

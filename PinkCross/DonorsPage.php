@@ -27,60 +27,71 @@ function test_input($data){
 }
 ?>
 
-    <html>
-    <head>
-        <title>Pink Cross</title>
-        <link rel="stylesheet"href="loginstyle.css">
-    </head>
-    <body>
-    <div class="header">
-        <form action= "DonorRegistration.php">
-            <button class="btn2" style="color: black"><i class="fa fa-user-plus"></i></button>
-        </form>
-        <form action= "Mainpage.php">
-            <button class="left" style="color: black"><i class="fa fa-arrow-left"></i></button>
-        </form>
+<html>
+<head>
+    <title>Pink Cross</title>
+    <link rel="stylesheet"href="Design.css">
+</head>
+<body>
+
+<img src="pinkCrossLogo.png" style="position: absolute">
+<form action= "LogInPage.php">
+    <button class="admin"><i class="fa fa-user-md"></i></button>
+</form>
+<form action="HomePage.php">
+    <button class="admin" style="float: left; margin-left: 10px"><i class="fa fa-home" aria-hidden="true"></i></button>
+</form>
+<div class="dropdown">
+    <button class="dropbtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    <div class="dropdown-content">
+        <a href="AvailablePage.php">Available Blood</a>
+        <a href="DonorsPage.php">Blood Donors</a>
+        <a href="RequestsPage.php">Blood Requests</a>
     </div>
-    <div class="SelectedPage">
-        <h3 style="margin-left: 15px">List of Blood Donors</h3>
-        <i class="fa fa-search" style="margin-left: 80px"></i> <input type="search">
-        <div style="float: right; margin-right: 80px;">
-            <form method = "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <select name="sort">
-                    <option value="all">Show All</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                </select>
-                <button type="submit" name="sortButton"><i class="fa fa-sort" aria-hidden="true"></i></button></form>
-        </div>
-        <table class="content-table" style="margin-left:auto;margin-right:auto;">
-            <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Sex</th>
-                <th>Birth Date</th>
-                <th>Contact Number</th>
-                <th>Email Address</th>
-                <th>Location</th>
-                <th>Blood Type</th>
-            </tr>
-            </thead>
-            <tbody>
+</div>
+
+<div class="SelectedPage">
+    <h3 style="margin-left: 15px">List of Blood Donors</h3>
+    <i class="fa fa-search" style="margin-left: 80px"></i> <input type="search">
+    <div style="float: right; margin-right: 80px;">
+        <form method = "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <select name="sort">
+                <option value="all">Show All</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+            <button type="submit" name="sortButton"><i class="fa fa-sort" aria-hidden="true"></i></button></form>
     </div>
+    <table class="content-table" style="margin-left:auto;margin-right:auto;">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Birth Date</th>
+            <th>Contact Number</th>
+            <th>Email Address</th>
+            <th>Location</th>
+            <th>Blood Type</th>
+        </tr>
+        </thead>
+        <tbody>
+</div>
 
 <?php
 
-if (isset($_POST['sortButton'])) {
+if ((isset($_POST['sortButton']) and ($sort != "all"))) {
     $result_out = mysqli_query($sqlConnect,"select * from tab1 where bloodtype = '$sort'");
+} else if ($sort == "all") {
+    $result_out = mysqli_query($sqlConnect,"select * from tab1");
 }
 
 while($VD=mysqli_fetch_array($result_out)) {

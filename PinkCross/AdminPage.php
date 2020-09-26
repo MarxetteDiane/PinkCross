@@ -18,16 +18,15 @@ $result_out = mysqli_query($sqlConnect,$query);
 <html>
 <head>
     <title>Admin - Pink Cross</title>
-    <link rel="stylesheet"href="loginstyle.css">
+    <link rel="stylesheet"href="Design.css">
 </head>
 <body>
-<div class="header">
-    <form action= "LogInPage.php" method="post">
-        Pink Cross Administration
-        <button class="btn2"><i class="fa fa-sign-out"></i></button>
-    </form>
-</div>
-<h3 style="margin-left: 15px">List of Available Blood Types</h3>
+<img src="pinkCrossLogo.png" style="position: absolute">
+<form action= "HomePage.php">
+    <button class="admin"><i class="fa fa-sign-out"></i></button>
+</form>
+<div class="SelectedPage">
+<h3>List of Available Blood Types</h3>
 <table class="content-table" style="margin-left: 15px">
     <thead>
     <tr>
@@ -150,6 +149,7 @@ if(!$result_out) {
 }
 ?>
 <form action="RequestUpdate.php"><input type="submit" style="margin-left: 15px" value="Update"/></form>
+</div>
 <?php
 ?>
 </body>
